@@ -1,0 +1,70 @@
+# Entornos virtuales de Python
+
+.venv/
+venv/
+env/
+
+# Variables de entorno y secretos
+
+.env
+.env.local
+*.key
+*.pem
+credentials.json
+service-account.json
+
+# Archivos generados por Python
+
+**pycache**/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebook
+
+.ipynb_checkpoints/
+
+# Configuración de editores
+
+.vscode/
+.idea/
+
+# Sistema operativo
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+
+*.log
+logs/
+
+# Datos locales generados por los pipelines
+
+data/bronze/*
+data/silver/*
+data/gold/*
+data/quarantine/*
+
+# Mantener la estructura de las carpetas de datos
+
+!data/bronze/.gitkeep
+!data/silver/.gitkeep
+!data/gold/.gitkeep
+!data/quarantine/.gitkeep
+
+# Archivos temporales
+
+*.tmp
+*.temp
+*.bak
+
+# Archivos de distribución de Python
+
+build/
+dist/
+*.egg-info/

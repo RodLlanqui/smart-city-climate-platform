@@ -1,0 +1,58 @@
+project:
+name: smart-city-climate-platform
+environment: development
+
+location:
+city: Santiago
+country: Chile
+latitude: -33.4489
+longitude: -70.6693
+timezone: America/Santiago
+
+batch:
+start_date: "2025-01-01"
+end_date: "2025-01-31"
+
+hourly_variables:
+- temperature_2m
+- relative_humidity_2m
+- precipitation
+- wind_speed_10m
+- surface_pressure
+
+daily_variables:
+- temperature_2m_max
+- temperature_2m_min
+- precipitation_sum
+- wind_speed_10m_max
+
+storage:
+bronze_path: data/bronze
+silver_path: data/silver
+gold_path: data/gold
+quarantine_path: data/quarantine
+
+quality:
+allow_nulls: false
+remove_duplicates: true
+
+valid_ranges:
+temperature_2m:
+min: -50
+max: 60
+
+
+relative_humidity_2m:
+  min: 0
+  max: 100
+
+precipitation:
+  min: 0
+
+wind_speed_10m:
+  min: 0
+
+surface_pressure:
+  min: 800
+  max: 1100
+
