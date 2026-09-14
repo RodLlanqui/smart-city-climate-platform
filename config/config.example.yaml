@@ -2,6 +2,9 @@ project:
   name: smart-city-climate-platform
   environment: development
 
+open_meteo:
+  archive_url: https://archive-api.open-meteo.com/v1/archive
+
 location:
   city: Santiago
   country: Chile
@@ -54,4 +57,3 @@ quality:
     surface_pressure:
       min: 800
       max: 1100
-

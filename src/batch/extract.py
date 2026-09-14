@@ -15,9 +15,6 @@ if str(SRC_PATH) not in sys.path:
 from common.config_loader import load_config
 
 
-OPEN_METEO_ARCHIVE_URL = "https://archive-api.open-meteo.com/v1/archive"
-
-
 def build_archive_params(config: Dict[str, Any]) -> Dict[str, Any]:
     """
     Construye los parámetros necesarios para consultar la API histórica de Open-Meteo.
@@ -43,6 +40,23 @@ def build_archive_params(config: Dict[str, Any]) -> Dict[str, Any]:
     return params
 
 
+def get_open_meteo_archive_url(config: Dict[str, Any]) -> str:
+    """Obtiene y valida el endpoint histórico desde la configuración YAML."""
+    try:
+        endpoint = config["open_meteo"]["archive_url"]
+    except (KeyError, TypeError) as error:
+        raise ValueError(
+            "La configuración debe definir 'open_meteo.archive_url'."
+        ) from error
+
+    if not isinstance(endpoint, str) or not endpoint.strip():
+        raise ValueError(
+            "La configuración 'open_meteo.archive_url' debe ser un texto no vacío."
+        )
+
+    return endpoint.strip()
+
+
 def fetch_historical_weather(config: Dict[str, Any]) -> Dict[str, Any]:
     """
     Consulta datos históricos meteorológicos desde Open-Meteo.
@@ -58,9 +72,10 @@ def fetch_historical_weather(config: Dict[str, Any]) -> Dict[str, Any]:
         requests.RequestException: Si ocurre un problema de conexión.
     """
     params = build_archive_params(config)
+    archive_url = get_open_meteo_archive_url(config)
 
     response = requests.get(
-        OPEN_METEO_ARCHIVE_URL,
+        archive_url,
         params=params,
         timeout=30
     )

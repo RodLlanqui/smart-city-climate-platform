@@ -12,17 +12,25 @@ def get_project_root() -> Path:
     return Path(__file__).resolve().parents[2]
 
 
-def resolve_path(relative_path: str) -> Path:
+def resolve_path(path_value: str | Path) -> Path:
     """
     Convierte una ruta relativa del proyecto en una ruta absoluta.
 
+    Las rutas absolutas se conservan sin cambios.
+
     Args:
-        relative_path: Ruta relativa definida desde la raíz del proyecto.
+        path_value: Ruta relativa definida desde la raíz del proyecto o ruta
+            absoluta.
 
     Returns:
         Ruta absoluta.
     """
-    return get_project_root() / relative_path
+    path = Path(path_value)
+
+    if path.is_absolute():
+        return path
+
+    return get_project_root() / path
 
 
 def ensure_directory(path: Path) -> None:

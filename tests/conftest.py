@@ -27,6 +27,9 @@ def batch_config():
             "name": "smart-city-climate-platform",
             "environment": "test",
         },
+        "open_meteo": {
+            "archive_url": "https://example.test/open-meteo/archive",
+        },
         "location": {
             "city": "Santiago",
             "country": "Chile",

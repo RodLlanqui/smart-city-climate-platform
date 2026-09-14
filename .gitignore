@@ -8,6 +8,7 @@ env/
 
 .env
 .env.local
+config/config.yaml
 *.key
 *.pem
 credentials.json
